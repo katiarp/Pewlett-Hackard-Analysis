@@ -175,3 +175,62 @@ INNER JOIN departments AS d
 ON(de.dept_no= d.dept_no)
 WHERE d.dept_name IN ('Sales','Development')
 ORDER BY d.dept_name;
+
+
+-- Birthday out of ranges from '1952 and 1955'
+SELECT emp_no,
+first_name,
+last_name,
+birth_date,
+hire_date
+FROM employees
+WHERE (emp_no = 110039);
+
+--Missing salaries
+SELECT ti.emp_no,
+ti.title,
+ti.to_date,
+s.salary,
+s.from_date,
+s.to_date
+FROM titles as ti
+LEFT JOIN salaries as s 
+ON (s.from_date = ti.from_date) AND (s.emp_no = ti.emp_no)
+ORDER BY ti.emp_no;
+
+
+-- Employee no. 110039
+SELECT DISTINCT ON (e.emp_no)
+e.emp_no,
+e.first_name,
+e.last_name,
+e.birth_date,
+e.hire_date,
+ti.title,
+ti.from_date,
+ti.to_date
+FROM employees AS e
+INNER JOIN titles AS ti
+ON ti.emp_no = e.emp_no
+WHERE (e.emp_no = 110039);
+
+
+-- Employee no. 110039 Marketing Manager
+SELECT DISTINCT e.emp_no,
+e.first_name,
+e.last_name,
+e.birth_date,
+e.hire_date,
+ti.title,
+ti.to_date,
+de.dept_no,
+d.dept_name
+FROM employees AS e
+INNER JOIN titles AS ti
+ON ti.emp_no = e.emp_no
+INNER JOIN dept_emp AS de
+ON e.emp_no= de.emp_no
+INNER JOIN departments AS d
+ON d.dept_no = de.dept_no
+WHERE (e.emp_no = 110039) 
+AND (ti.to_date= '9999-01-01');

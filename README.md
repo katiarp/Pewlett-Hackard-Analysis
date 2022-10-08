@@ -20,7 +20,7 @@ A visual representation of the data facilitates the creation of the database; th
 
 Modeling the data is a critical step in database creation because it provides a [framework]( https://www.sap.com/insights/what-is-data-modeling.html)  and at the same time shows how the data flows and why the database exists.   
 
-To build the new database for Pewlett Hackard I used PostgreSQL, which is an open-source database management system. Using the framework I designed, I created the first table with the following code and imported the departements.csv file.
+To build the new database for Pewlett Hackard I used PostgreSQL, which is an open-source database management system. Using the framework that I designed, I created the first table with the following code and imported the departements.csv file.
 
 
 ```
@@ -33,9 +33,9 @@ CREATE TABLE departments(
 );
 ```
 
-Using SQL queries, I created a database table for every CSV file defining relationships and constraints. after creating the tables I imported the data from the CSV files into their corresponding tables by using the Import/Export tool in PgAdmin. Once I had all the tables and data, I started with analysis. 
+Using SQL queries, I created a database table for every CSV file defining relationships and constraints. After creating the tables I imported the data from the CSV files into their corresponding tables by using the Import/Export tool in PgAdmin. Once I had all the tables and data, I started with analysis. 
 
-## Results:
+## Results
 
 It was established that employees born between 1952 and 1955 were going to be retiring soon. The first query created gave me a list of employees with birth dates between ‘1952’ and ‘1955.’ However, in order to determine retirement eligibility, it was necessary to narrow down the search and include only those employees hired between ‘1985’ and ‘1988.’ I used the following query to get that result. 
 
@@ -189,11 +189,11 @@ ORDER BY COUNT (u.title) DESC;
 ```
 ![Image_name](Resources/retiring_titles.png)
 
-The last two tables show that there is a total of 72458 employees that will be retiring soon. We can see that there are many senior engineers and senior staff that are about to retire, so this could be a cause of concern for PH. 
+The last two tables show that there is a total of 72,458 employees that will be retiring soon. We can see that there are many senior engineers and senior staff that are about to retire, so this could be a cause of concern for PH. 
 
 - **Mentorship Eligibility** 
 
-Pewlett Hackard wants to establish a mentorship program to address this. One proposal for this initiative is to find current employees born between January 1965 and December 1965. The following query gave us a list of 1549 employees that could be eligible for the mentorship program. However, this list has some limitations because we only know that these people were born in 1965, but we don't know if they have the necessary qualifications. 
+Pewlett Hackard wants to establish a mentorship program to address this. One proposal for this initiative is to find current employees born between January 1965 and December 1965. The following query gave us a list of 1,549 employees that could be eligible for the mentorship program. However, this list has some limitations because we only know that these people were born in 1965, but we don't know if they have the necessary qualifications. 
 
 ```
 SELECT DISTINCT ON (e.emp_no)
@@ -216,7 +216,7 @@ ORDER BY e.emp_no, ti.to_date DESC;
 
 - **Mentors Program**
 
-After analyzing Pewlett Hackard's data and needs, I would propose an ongoing **Mentors Program** in which they could look for current employees (not retiring soon), who are born between '1956' and '1965,' and who were hired between 1985 and 1995. The idea of this program is to proactively look for other experienced employees who could be interested in mentoring their colleagues. This would increase the likelihood of success in transferring knowledge within the company.
+After analyzing Pewlett Hackard's data and needs, I would propose an ongoing **Mentors Program** in which they could look for current employees (not retiring soon), who were born between '1956' and '1965,' and who were hired between 1985 and 1995. The idea of this program is to proactively look for other experienced employees who could be interested in mentoring their colleagues. This would increase the likelihood of success in transferring knowledge within the company.
 
 
 This is the query that provides a list of said employees. 
